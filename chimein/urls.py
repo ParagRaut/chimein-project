@@ -18,9 +18,11 @@ from django.urls import path, include
 from products.views import home_page
 
 from accounts import urls
+from products import urls
 
 urlpatterns = [
     path('', home_page, name='home-page'),
     path('accounts/', include('accounts.urls')),
+    path('products/', include('products.urls')),
     path('admin/', admin.site.urls),
 ]
