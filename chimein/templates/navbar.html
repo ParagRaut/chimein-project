@@ -13,7 +13,11 @@
         <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+            <a class="nav-link" href='{% url 'products-create-page' %}'><span class="oi oi-plus"></span> Product</a>
+          </li>
+          <br/>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}"><span class="oi oi-account-logout"></span> Logout</a>
             <form id="logout" class="" action="{% url 'logout' %}" method="post">
               {% csrf_token %}
               <input type="hidden"/>
@@ -21,10 +25,10 @@
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="nav-link" href='{% url 'signup' %}'>Sign Up</a>
+            <a class="nav-link" href='{% url 'signup' %}'><span class="oi oi-cloud-upload"></span> Sign Up</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href='{% url 'login' %}'>Login</a>
+            <a class="nav-link" href='{% url 'login' %}'><span class="oi oi-account-login"></span> Login</a>
           </li>
           {% endif %}
         </ul>

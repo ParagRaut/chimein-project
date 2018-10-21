@@ -1,8 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<title>{% block head_title %}Home - {{ block.super }}{% endblock head_title %}</title>
+<title>{% block head_title %}Products - {{ block.super }}{% endblock head_title %}</title>
 
-<h1>Home</h1>
+{% for product in products %}
+
+<div class="row pt-4">
+  <div class="col-2" onclick="window.location='{% url 'products-detail-page' product.id  %}';" style="cursor:pointer;">
+    <img src="{{ product.icon.url }}" alt="" class="img-fluid"/>
+  </div>
+  <div class="col-6" onclick="window.location='{% url 'products-detail-page' product.id  %}';" style="cursor:pointer;">
+    <a href="#"></a> <h1>{{ product.title }} </h1>
+    <p>{{ product.summary }}</p>
+  </div>
+  <div class="col-4" onclick="window.location='{% url 'products-detail-page' product.id  %}';" style="cursor:pointer;">
+    <a href="javascript:{document.getElementById('upvote{{ product.id }}').submit()}"><button class="btn btn-primary btn-lg btn-block"><span class="oi oi-thumb-up"></span> Upvote {{ product.votes_total }}</button> </a>
+  </div>
+</div>
+
+<form id="upvote{{ product.id }}" action="{% url 'products-upvote' product.id %}" method="post">
+  {% csrf_token %}
+  <input type="hidden">
+</form>
+
+{% endfor %}
+
 
 {% endblock content %}

@@ -2,13 +2,16 @@
 
 {% block content %}
 
+<title>{% block head_title %}Create Product - {{ block.super }}{% endblock head_title %}</title>
+
+
 {% if error %}
-    {{ error }}
-    <br/>
-    <br/>
+{{ error }}
+<br/>
+<br/>
 {% endif %}
 
-<h1>Products</h1>
+<h1>Create</h1>
 
 <form class="" action="{% url 'products-create-page' %}" enctype="multipart/form-data" method="POST">
   {% csrf_token %}
